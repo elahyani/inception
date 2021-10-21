@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+    nginx:
+        build: ./requirements/nginx
+        image: nginx
+        restart: always
+        ports:
+            - 443:443
+        environment:
+            - NGINX_PORT=443
+        volumes:
+            - "/www/wordpress"
+        networks:
+            - inception
+            
+#     wordpress:
+#         build: ./requirements/wordpress
+#         image: wordpress
+#         restart: always
+#         volumes:
+#             - "/www/wordpress"
+#         networks:
+#             - inception
+                            
+#     mariadb:
+#         build: ./requirements/mariadb
+#         image: mariadb
+#         restart: always
+#         environment:
+#             MYSQL_DATABASE: exampledb
+#             MYSQL_USER: exampleuser
+#             MYSQL_PASSWORD: examplepass
+#             MYSQL_RANDOM_ROOT_PASSWORD: '1'
+#         networks:
+#             - inception
+
+# networks:
+#     inception:
+#         driver: bridge
