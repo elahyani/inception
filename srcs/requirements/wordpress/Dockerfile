@@ -9,12 +9,15 @@ RUN apk add php7 php7-fpm php7-common php7-iconv php7-json php7-gd php7-curl \
 	php7-dom php7-opcache php7-zlib php7-session php7-intl php7-zip
 
 RUN wget https://wordpress.org/latest.tar.gz
-RUN tar xzf latest.tar.gz
+RUN tar -xzvf latest.tar.gz
 RUN rm latest.tar.gz
 RUN mv wordpress /www/wordpress
-RUN mkdir /www/wordpress/tmp
-RUN chown -R 777 /www/wordpress/tmp
+# RUN mkdir /www/wordpress/tmp
+# RUN chown -R 777 /www/wordpress/tmp
 
 ADD conf/wp-config.php /www/wordpress/wp-config.php
+RUN sed -i "s/user = nobody/user = root/g" /etc/php7/php-fpm.d/www.conf
+RUN sed -i "s/group = nobody/group = root/g" /etc/php7/php-fpm.d/www.conf
+RUN sed -i "s/listen = 127.0.0.1:9000/listen = 0.0.0.0:9000/g" /etc/php7/php-fpm.d/www.conf
 
-ENTRYPOINT ["php-fpm7", "-F", "R"]
+ENTRYPOINT ["php-fpm7", "-F", "-R"]

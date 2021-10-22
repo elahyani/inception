@@ -1,40 +1,66 @@
-version: "3"
+version: "3.9"
 
 services:
-    nginx:
-        build: ./requirements/nginx
-        image: nginx
-        restart: always
-        ports:
-            - 443:443
+    mariadb:
+        build: requirements/mariadb
+        image: mariadb
+        env_file:
+            - .env
         environment:
-            - NGINX_PORT=443
+            - MYSQL_DATABASE=${MYSQL_DATABASE}
+            - MYSQL_USER=${MYSQL_USER}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
         volumes:
-            - "/www/wordpress"
+            - mdb_data:/var/lib/mysql
         networks:
             - inception
-            
-#     wordpress:
-#         build: ./requirements/wordpress
-#         image: wordpress
-#         restart: always
-#         volumes:
-#             - "/www/wordpress"
-#         networks:
-#             - inception
+        restart: unless-stopped
+    wordpress:
+        build: requirements/wordpress
+        image: wordpress
+        volumes:
+            - wp_data:/www/wordpress
+        depends_on:
+            - mariadb
+        env_file:
+            - .env
+        environment:
+            - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
+            - MYSQL_DATABASE=${MYSQL_DATABASE}
+            - MYSQL_USER=${MYSQL_USER}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+        networks:
+            - inception
+        restart: unless-stopped
                             
-#     mariadb:
-#         build: ./requirements/mariadb
-#         image: mariadb
-#         restart: always
-#         environment:
-#             MYSQL_DATABASE: exampledb
-#             MYSQL_USER: exampleuser
-#             MYSQL_PASSWORD: examplepass
-#             MYSQL_RANDOM_ROOT_PASSWORD: '1'
-#         networks:
-#             - inception
+    nginx:
+        build: requirements/nginx
+        image: nginx
+        depends_on:
+            - wordpress
+        volumes:
+            - wp_data:/www/wordpress
+        ports:
+            - 443:443
+        networks:
+            - inception
+        restart: unless-stopped
 
-# networks:
-#     inception:
-#         driver: bridge
+volumes:
+    wp_data:
+        driver: 'local'
+        driver_opts:
+            type: 'none'
+            device: '/home/elahyani/data/wordpress'
+            o: 'bind'
+            
+    mdb_data:
+        driver: 'local'
+        driver_opts:
+            type: 'none'
+            device: '/home/elahyani/data/mariadb'
+            o: 'bind'
+
+networks:
+    inception:
