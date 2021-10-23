@@ -2,15 +2,17 @@ version: "3.9"
 
 services:
     mariadb:
-        build: requirements/mariadb
+        build:
+            context: requirements/mariadb
+            args:
+                - MYSQL_DATABASE=${MYSQL_DATABASE}
+                - MYSQL_USER=${MYSQL_USER}
+                - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+                - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
         image: mariadb
+        container_name: mariadb
         env_file:
             - .env
-        environment:
-            - MYSQL_DATABASE=${MYSQL_DATABASE}
-            - MYSQL_USER=${MYSQL_USER}
-            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
         volumes:
             - mdb_data:/var/lib/mysql
         networks:
@@ -19,17 +21,13 @@ services:
     wordpress:
         build: requirements/wordpress
         image: wordpress
+        container_name: wordpress
         volumes:
             - wp_data:/www/wordpress
         depends_on:
             - mariadb
         env_file:
             - .env
-        environment:
-            - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
-            - MYSQL_DATABASE=${MYSQL_DATABASE}
-            - MYSQL_USER=${MYSQL_USER}
-            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
         networks:
             - inception
         restart: unless-stopped
@@ -37,6 +35,7 @@ services:
     nginx:
         build: requirements/nginx
         image: nginx
+        container_name: nginx
         depends_on:
             - wordpress
         volumes:
