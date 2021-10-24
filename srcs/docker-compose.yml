@@ -31,7 +31,19 @@ services:
         networks:
             - inception
         restart: unless-stopped
-                            
+    adminer:
+        build: requirements/adminer
+        image: adminer
+        container_name: adminer
+        depends_on: 
+            - wordpress
+        ports: 
+            - 5000:5000
+        volumes: 
+            - wp_data:/www/wordpress
+        networks:
+            - inception
+        restart: unless-stopped
     nginx:
         build: requirements/nginx
         image: nginx
