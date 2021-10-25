@@ -44,16 +44,26 @@ services:
         networks: 
             - inception
         restart: unless-stopped
+    ftp:
+        build: requirements/bonus/ftp
+        image: ftp
+        container_name: ftp
+        depends_on: 
+            - wordpress
+        ports: 
+            - 21:21
+            - 10100:10100
+        volumes:
+            - wp_data:/www/wordpress
+        networks: 
+            - inception
+        restart: unless-stopped
     adminer:
         build: requirements/bonus/adminer
         image: adminer
         container_name: adminer
-        depends_on: 
-            - wordpress
         ports: 
             - 5000:5000
-        volumes: 
-            - wp_data:/www/wordpress
         networks:
             - inception
         restart: unless-stopped

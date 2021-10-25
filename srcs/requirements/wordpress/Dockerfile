@@ -17,6 +17,7 @@ RUN mv wordpress /www/wordpress
 ADD conf/wp-config.php /www/wordpress/wp-config.php
 RUN mkdir /www/wordpress/wp-content/plugins/redis-cache
 ADD conf/redis-cache/ /www/wordpress/wp-content/plugins/redis-cache/
+RUN cp /www/wordpress/wp-content/plugins/redis-cache/includes/object-cache.php  /www/wordpress/wp-content/
 RUN sed -i "s/user = nobody/user = root/g" /etc/php7/php-fpm.d/www.conf
 RUN sed -i "s/group = nobody/group = root/g" /etc/php7/php-fpm.d/www.conf
 RUN sed -i "s/listen = 127.0.0.1:9000/listen = 0.0.0.0:9000/g" /etc/php7/php-fpm.d/www.conf
