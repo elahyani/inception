@@ -14,8 +14,9 @@ RUN rm latest.tar.gz
 RUN mv wordpress /www/wordpress
 # RUN mkdir /www/wordpress/tmp
 # RUN chown -R 777 /www/wordpress/tmp
-
 ADD conf/wp-config.php /www/wordpress/wp-config.php
+RUN mkdir /www/wordpress/wp-content/plugins/redis-cache
+ADD conf/redis-cache/ /www/wordpress/wp-content/plugins/redis-cache/
 RUN sed -i "s/user = nobody/user = root/g" /etc/php7/php-fpm.d/www.conf
 RUN sed -i "s/group = nobody/group = root/g" /etc/php7/php-fpm.d/www.conf
 RUN sed -i "s/listen = 127.0.0.1:9000/listen = 0.0.0.0:9000/g" /etc/php7/php-fpm.d/www.conf

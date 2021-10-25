@@ -17,7 +17,8 @@
  *
  * @package WordPress
  */
-
+define('WP_REDIS_HOST', 'redis');
+define('WP_REDIS_PORT', 6379);
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 define( 'DB_NAME', 'wordpress' );
@@ -37,6 +38,7 @@ define( 'DB_CHARSET', 'utf8' );
 /** The Database Collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
 
+define('FS_METHOD', 'direct');
 /**#@+
  * Authentication Unique Keys and Salts.
  *
@@ -54,6 +56,8 @@ define( 'AUTH_SALT',        '' );
 define( 'SECURE_AUTH_SALT', '' );
 define( 'LOGGED_IN_SALT',   '' );
 define( 'NONCE_SALT',       '' );
+define( 'WP_CACHE_KEY_SALT', '5DknvYepdjyJMo8gDqrLhrpAJUQ' );
+define( 'WP_CACHE', true );
 
 /**#@-*/
 

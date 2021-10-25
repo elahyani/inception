@@ -40,7 +40,6 @@ images:
 clean:
 	@sudo rm -rf /home/elahyani/data/*
 	@docker-compose -f $(C_FILE) down -v --rmi all
-	@docker stop `docker ps -qa`
 	@docker system prune -af
 	@docker rmi `docker images`
 

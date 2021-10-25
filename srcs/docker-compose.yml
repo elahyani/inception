@@ -31,8 +31,21 @@ services:
         networks:
             - inception
         restart: unless-stopped
+    redis:
+        build: requirements/bonus/redis
+        image: redis
+        container_name: redis
+        depends_on: 
+            - wordpress
+        ports: 
+            - 6379:6379
+        volumes:
+            - wp_data:/www/wordpress
+        networks: 
+            - inception
+        restart: unless-stopped
     adminer:
-        build: requirements/adminer
+        build: requirements/bonus/adminer
         image: adminer
         container_name: adminer
         depends_on: 
