@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.14.2
 EXPOSE 443
 
 RUN apk update && apk upgrade

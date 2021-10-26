@@ -51,10 +51,10 @@ services:
         depends_on: 
             - wordpress
         ports: 
-            - 21:21
-            - 10100:10100
+            - "21:21"
+            - "30021:30021"
         volumes:
-            - wp_data:/www/wordpress
+            - wp_data:/home/elahyani
         networks: 
             - inception
         restart: unless-stopped
