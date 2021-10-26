@@ -2,10 +2,12 @@ C_FILE= srcs/docker-compose.yml
 
 DB_VOLUME=/home/elahyani/data/mariadb
 WP_VOLUME=/home/elahyani/data/wordpress
+BKP_VOLUME=/home/elahyani/backup
 
 all:
 	@sudo mkdir $(DB_VOLUME)
 	@sudo mkdir $(WP_VOLUME)
+	@sudo mkdir $(BKP_VOLUME)
 	@sudo sh -c 'echo "127.0.0.1  elahyani.42.fr" >> /etc/hosts'
 	@docker-compose -f $(C_FILE) build
 	@docker-compose -f $(C_FILE) up -d
@@ -40,7 +42,8 @@ images:
 
 clean:
 	@sudo rm -rf /home/elahyani/data/*
+	@sudo rm -rf /home/elahyani/backup
 	@docker-compose -f $(C_FILE) down -v --rmi all
 	@docker volume prune -f
 
-re: down up
+re: clean all

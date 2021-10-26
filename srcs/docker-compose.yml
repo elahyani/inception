@@ -67,6 +67,17 @@ services:
         networks:
             - inception
         restart: unless-stopped
+    backup:
+        build: requirements/bonus/backup
+        image: backup
+        container_name: backup
+        depends_on: 
+            - wordpress
+        volumes: 
+            - wp_data:/www/wordpress
+            - mdb_data:/var/lib/mysql
+            - backup_data:/backup
+        restart: unless-stopped
     nginx:
         build: requirements/nginx
         image: nginx
@@ -94,6 +105,13 @@ volumes:
         driver_opts:
             type: 'none'
             device: '/home/elahyani/data/mariadb'
+            o: 'bind'
+    
+    backup_data:
+        driver: local
+        driver_opts:
+            type: 'none'
+            device: '/home/elahyani/backup'
             o: 'bind'
 
 networks:
