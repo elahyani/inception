@@ -1,6 +1,11 @@
 FROM alpine:3.14.2
 
 RUN apk update && apk upgrade
-COPY tools/index.html /www/index.html
+RUN apk add nginx
+RUN mkdir /www
 
-CMD ["nginx", "-g", "daemon off;"]
+RUN mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.orig
+ADD conf/nginx.conf /etc/nginx/nginx.conf
+ADD tools/index.html /www/index.html
+
+CMD ["npm", "run", "index.js"]

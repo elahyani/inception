@@ -1,4 +1,4 @@
-#!bin/sh
+#!/bin/sh
 
 if [ ! -f "/var/lib/mysql/ib_buffer_pool" ]; then
 	/etc/init.d/mariadb setup
