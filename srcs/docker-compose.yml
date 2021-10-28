@@ -78,6 +78,15 @@ services:
             - mdb_data:/var/lib/mysql
             - backup_data:/backup
         restart: unless-stopped
+    website:
+        build: requirements/bonus/website
+        image: website
+        container_name: website
+        ports:
+            - 3000:3000
+        networks:
+            - inception
+        restart: unless-stopped
     nginx:
         build: requirements/nginx
         image: nginx

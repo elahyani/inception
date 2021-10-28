@@ -12,8 +12,7 @@ RUN wget https://wordpress.org/latest.tar.gz
 RUN tar -xzvf latest.tar.gz
 RUN rm latest.tar.gz
 RUN mv wordpress /www/wordpress
-# RUN mkdir /www/wordpress/tmp
-# RUN chown -R 777 /www/wordpress/tmp
+
 ADD conf/wp-config.php /www/wordpress/wp-config.php
 RUN mkdir /www/wordpress/wp-content/plugins/redis-cache
 ADD conf/redis-cache/ /www/wordpress/wp-content/plugins/redis-cache/

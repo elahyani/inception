@@ -1,13 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inception</title>
+	<style>
+		body {
+			font-family: 'Courier New', Courier, monospace;
+			padding: 0 10rem;
+			top: 0%;
+		}
+		.title {
+			text-align: center;
+			color: #FF9F7E;
+			font-size: 2rem;
+			transform: rotate(10deg);
+			margin-top: 10rem;
+		}
+		.services {
+			text-align: center;
+			margin-top: 5rem;
+		}
+		.service {
+			font-size: large;
+			font-weight: 700;
+			width: 10rem;
+			font-size: medium;
+			display: inline-block;
+			/* border: 2px solid #FF9F7E;
+			border-radius: 3rem; */
+			transition: all 0.7s;
+			padding: 1rem 2rem;
+			margin-right: 2rem;
+		}
+		.link1 {
+			text-decoration: unset;
+			color: black;
+			border: 2px solid #FF9F7E;
+			border-radius: 50%;
+			padding: 3rem 4rem;
+			background-color: white;
+			margin-left: 1rem;
+			transition: all 0.7s;
+
+		}
+		.link2 {
+			text-decoration: unset;
+			color: black;
+			border: 2px solid #FF9F7E;
+			border-radius: 50%;
+			padding: 3rem 4rem;
+			background-color: white;
+			transition: all 0.5s;
+		}
+
+		.link1:hover, .link2:hover{
+			color: white;
+			background-color: #FF9F7E;
+			border-color: wheat;
+		}
+		
+		.field-set {
+			border-radius: 47% 53% 49% 51% / 53% 54% 46% 47%;
+			border-color: #FF9F7E;
+			padding: 7rem;
+			background-color: blanchedalmond;
+		}
+		.leg-title {
+			color: #FF9F7E;
+			font-weight: bold;
+			font-size: 1.5rem;
+		}
+
+		.mouth {
+			margin-left: 8rem;
+			margin-top: -2.5rem;
+			background-color: white;
+			transform: rotate(10deg);
+			width: 550px;
+			height: 100px; /* as the half of the width */
+			/* background-color: #FF9F7E; */
+			border-bottom-left-radius: 110px;  /* 100px of height + 10px of border */
+			border-bottom-right-radius: 110px; /* 100px of height + 10px of border */
+			border: 2px solid #FF9F7E;
+			border-top: 0;
+		}
+
+		.tangue {
+			z-index: 1;
+			position: absolute;
+			color: #FF9F7E;
+			font-weight: bold;
+			font-size: 2rem;
+			transform: rotate(10deg);
+			margin-left: -6rem;
+		}
+	</style>
 </head>
 <body>
-    hello world
+	<div class="services">
+		<fieldset class="field-set">
+			<legend class="leg-title">\\\\\|||||//////</legend>
+			<div class="service">
+				<a class="link1" href="https://elahyani.42.fr" target="_blank">Wordpress</a>
+			</div>
+			<div class="service">
+				<a class="link2" href="http://elahyani.42.fr:5000" target="_blank">Adminer</a>
+			</div>
+			<h1 class="title">-----------------------------</h1>
+			<span class="tangue">Inception</span>
+			<div class="mouth"></div>
+		</fieldset>
+	</div>
 </body>
 </html>
-
