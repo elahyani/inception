@@ -3,7 +3,7 @@
 if [ ! -f "/var/lib/mysql/ib_buffer_pool" ]; then
 	/etc/init.d/mariadb setup
 	/etc/init.d/mariadb start
-	mysql -u root -e "DELETE FROM mysql.user WHERE User=''; FLUSH PRIVILEGES;"
+	mysql -u root -e "DELETE FROM mysql.user WHERE user=''; FLUSH PRIVILEGES;"
 	mysql -u root -e "CREATE USER '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';"
 	mysql -u root -e "CREATE DATABASE ${MYSQL_DATABASE};"
 	mysql -u root -e "GRANT ALL PRIVILEGES ON *.* to '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}'; FLUSH PRIVILEGES;"

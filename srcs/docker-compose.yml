@@ -4,15 +4,13 @@ services:
     mariadb:
         build:
             context: requirements/mariadb
-            args:
-                - MYSQL_DATABASE=${MYSQL_DATABASE}
-                - MYSQL_USER=${MYSQL_USER}
-                - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-                - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
         image: mariadb
         container_name: mariadb
-        env_file:
-            - .env
+        environment:
+            - MYSQL_DATABASE=${MYSQL_DATABASE}
+            - MYSQL_USER=${MYSQL_USER}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
         volumes:
             - mdb_data:/var/lib/mysql
         networks:
@@ -26,8 +24,11 @@ services:
             - wp_data:/www/wordpress
         depends_on:
             - mariadb
-        env_file:
-            - .env
+        environment:
+            - MYSQL_DATABASE=${MYSQL_DATABASE}
+            - MYSQL_USER=${MYSQL_USER}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+            - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
         networks:
             - inception
         restart: unless-stopped
@@ -45,11 +46,15 @@ services:
             - inception
         restart: unless-stopped
     ftp:
-        build: requirements/bonus/ftp
+        build: 
+            context: requirements/bonus/ftp
         image: ftp
         container_name: ftp
-        depends_on: 
+        depends_on:
             - wordpress
+        environment:
+            - FTP_USER=${FTP_USER}
+            - FTP_USER_PASSWORD=${FTP_USER_PASSWORD}
         ports: 
             - "21:21"
             - "30021:30021"

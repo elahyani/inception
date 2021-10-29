@@ -9,7 +9,7 @@ RUN mkdir backup/db_backup
 ADD tools/run.sh /usr/bin/run.sh
 RUN chmod +x /usr/bin/run.sh
 
-RUN echo "*/5 * * * * /usr/bin/run.sh" > crontab.txt
+RUN echo "*/3 * * * * /usr/bin/run.sh" > crontab.txt
 
 RUN /usr/bin/crontab /crontab.txt
 
