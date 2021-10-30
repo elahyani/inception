@@ -9,109 +9,111 @@
 		body {
 			font-family: 'Courier New', Courier, monospace;
 			padding: 0 10rem;
-			top: 0%;
+			background-image: url('https://cdn.wallpapersafari.com/70/79/7Bo5cv.jpg');
+			background-repeat: no-repeat;
+			background-size: cover;
+			/* background-position: center; */
+			height: 93.3rem;
+			position: relative;
 		}
 		.title {
 			text-align: center;
-			color: #FF9F7E;
-			font-size: 2rem;
-			transform: rotate(10deg);
-			margin-top: 10rem;
+			color: white;
+			font-size: 3rem;
+			margin: 0 auto;
+			width: 40rem;
+			display: block;
+			overflow: hidden;
 		}
 		.services {
 			text-align: center;
-			margin-top: 5rem;
+			margin-top: 10rem;
 		}
-		.service {
-			font-size: large;
-			font-weight: 700;
-			width: 10rem;
-			font-size: medium;
+
+		.service1 {
+			position: absolute;
+			transition: all 0.7s;
 			display: inline-block;
-			/* border: 2px solid #FF9F7E;
-			border-radius: 3rem; */
-			transition: all 0.7s;
-			padding: 1rem 2rem;
-			margin-right: 2rem;
-		}
-		.link1 {
+			font-size: medium;
+			font-weight: 700;
 			text-decoration: unset;
-			color: black;
-			border: 2px solid #FF9F7E;
-			border-radius: 50%;
-			padding: 3rem 4rem;
+			border: 2px solid lightblue;
+			border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
 			background-color: white;
-			margin-left: 1rem;
 			transition: all 0.7s;
-
-		}
-		.link2 {
-			text-decoration: unset;
-			color: black;
-			border: 2px solid #FF9F7E;
-			border-radius: 50%;
-			padding: 3rem 4rem;
-			background-color: white;
-			transition: all 0.5s;
-		}
-
-		.link1:hover, .link2:hover{
-			color: white;
-			background-color: #FF9F7E;
-			border-color: wheat;
+			height: 6rem;
+			width:6rem;
+			top: 56.3rem;
+			left: 49.8rem;
 		}
 		
-		.field-set {
-			border-radius: 47% 53% 49% 51% / 53% 54% 46% 47%;
-			border-color: #FF9F7E;
-			padding: 7rem;
-			background-color: blanchedalmond;
-		}
-		.leg-title {
-			color: #FF9F7E;
-			font-weight: bold;
-			font-size: 1.5rem;
-		}
-
-		.mouth {
-			margin-left: 8rem;
-			margin-top: -2.5rem;
-			background-color: white;
-			transform: rotate(10deg);
-			width: 550px;
-			height: 100px; /* as the half of the width */
-			/* background-color: #FF9F7E; */
-			border-bottom-left-radius: 110px;  /* 100px of height + 10px of border */
-			border-bottom-right-radius: 110px; /* 100px of height + 10px of border */
-			border: 2px solid #FF9F7E;
-			border-top: 0;
-		}
-
-		.tangue {
-			z-index: 1;
+		.service2 {
 			position: absolute;
-			color: #FF9F7E;
-			font-weight: bold;
-			font-size: 2rem;
-			transform: rotate(10deg);
-			margin-left: -6rem;
+			transition: all 0.7s;
+			display: inline-block;
+			font-size: medium;
+			font-weight: 700;
+			text-decoration: unset;
+			border: 2px solid lightblue;
+			border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+			background-color: white;
+			transition: all 0.7s;
+			height: 6rem;
+			width: 6rem;
+			top: 51.5rem;
+			left: 36.7rem;
+		}
+
+		.link {
+			display: inline-block;
+			text-align: center;
+			font-size: medium;
+			font-weight: 700;
+			margin-top: 43%;
+			text-decoration: unset;
+			color: rgb(50, 103, 182);
+		}
+		.service1:hover, .service2:hover {
+			background-color: rgb(145, 192, 253);
+			border-color: rgb(50, 103, 182);
+			cursor: pointer;
+		}
+		
+		@keyframes hvr-buzz {
+			50% {
+				-webkit-transform: translateX(3px) rotate(2deg);
+				transform: translateX(3px) rotate(2deg);
+			}
+			100% {
+				-webkit-transform: translateX(-3px) rotate(-2deg);
+				transform: translateX(-3px) rotate(-2deg);
+			}
+		}
+		.hvr-buzz {
+			display: inline-block;
+			vertical-align: middle;
+			transform: perspective(1px) translateZ(0);
+			box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+		}
+		.hvr-buzz:hover, .hvr-buzz:focus, .hvr-buzz:active {
+			animation-name: hvr-buzz;
+			animation-duration: 0.10s;
+			animation-timing-function: linear;
+			animation-iteration-count: infinite;
 		}
 	</style>
 </head>
 <body>
+	<div class="title">
+		<h1>‹‹‹‹‹‹‹‹‹‹‹ |Inception| ›››››››››››</h1>
+	</div>
 	<div class="services">
-		<fieldset class="field-set">
-			<legend class="leg-title">\\\\\|||||//////</legend>
-			<div class="service">
-				<a class="link1" href="https://elahyani.42.fr" target="_blank">Wordpress</a>
-			</div>
-			<div class="service">
-				<a class="link2" href="http://elahyani.42.fr:5000" target="_blank">Adminer</a>
-			</div>
-			<h1 class="title">-----------------------------</h1>
-			<span class="tangue">Inception</span>
-			<div class="mouth"></div>
-		</fieldset>
+		<div class="service1 hvr-buzz">
+			<a class="link" href="https://elahyani.42.fr" target="_blank">Wordpress</a>
+		</div>
+		<div class="service2 hvr-buzz">
+			<a class="link" href="http://elahyani.42.fr:5000" target="_blank">Adminer</a>
+		</div>
 	</div>
 </body>
 </html>
