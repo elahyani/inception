@@ -5,9 +5,9 @@ WP_VOLUME=/home/elahyani/data/wordpress
 BKP_VOLUME=/home/elahyani/backup
 
 all:
-	@sudo mkdir $(DB_VOLUME)
-	@sudo mkdir $(WP_VOLUME)
-	@sudo mkdir $(BKP_VOLUME)
+	@sudo mkdir $(DB_VOLUME) || true
+	@sudo mkdir $(WP_VOLUME) || true
+	@sudo mkdir $(BKP_VOLUME) || true
 	@sudo sh -c 'echo "127.0.0.1  elahyani.42.fr" >> /etc/hosts'
 	@docker-compose -f $(C_FILE) build
 	@docker-compose -f $(C_FILE) up -d
